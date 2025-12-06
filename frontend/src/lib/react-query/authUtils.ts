@@ -59,5 +59,7 @@ export const getUserFromToken = () => {
 export const logoutUser = () => {
   removeTokens();
   console.log("User logged out");
-  // window.location.href = "/sign-in";
+  window.location.href = "/sign-in";
 };
+
+

@@ -1,6 +1,6 @@
 from django.shortcuts import get_object_or_404, render
 from rest_framework.views import APIView
-from .serializers import SalarySlipSerializer,ExpensesSerializers
+from .serializers import SalarySlipSerializer,ExpensesSerializer
 from rest_framework.response import Response
 from rest_framework import status,permissions
 from .models import SalarySlip
@@ -60,10 +60,9 @@ class ExpensesView(APIView):
     permission_classes = [permissions.IsAuthenticated]
     
     def post(self,request):
-        serializer = ExpensesSerializers(data=request.data)
+        serializer = ExpensesSerializer(data=request.data)
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data,status=201)
         return Response(serializer.errors,status=400)
-    
     

@@ -65,12 +65,14 @@ class SalarySlipSerializer(serializers.ModelSerializer):
   
   
 
-class ExpensesSerializers(serializers.ModelSerializer):
-    email = serializers.CharField(source="expenses.email",read_only=True)
+class ExpensesSerializer(serializers.ModelSerializer):
+    email = serializers.EmailField(source="user.email", read_only=True)
+
     class Meta:
-        model =  Expenses
-        fields = ['user','price','description','created_at','email','approved']
-        
+        model = Expenses
+        fields = ['id', 'user', 'price', 'description', 'approved', 'created_at', 'email']
+        read_only_fields = ['user', 'approved']
+
 
         
         
